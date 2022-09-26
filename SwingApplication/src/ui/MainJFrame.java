@@ -6,6 +6,7 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JSplitPane;
 import model.EmployeePojo;
 
 /**
@@ -129,7 +130,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void viewEmployeeRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeRecordsActionPerformed
         // TODO add your handling code here:
-        System.out.println(employeeDatabase.size());
+        ViewRecordsJPanel viewRecordsJPanel = new ViewRecordsJPanel(employeeDatabase);
+        splitPane.setRightComponent(viewRecordsJPanel);
     }//GEN-LAST:event_viewEmployeeRecordsActionPerformed
 
     /**
@@ -175,4 +177,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton viewEmployeeRecords;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
+
+    public JSplitPane getSplitPane() {
+        return splitPane;
+    }
 }
