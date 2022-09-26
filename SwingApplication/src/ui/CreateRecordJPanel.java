@@ -4,6 +4,10 @@
  */
 package ui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.EmployeePojo;
+
 /**
  *
  * @author Rahul
@@ -13,8 +17,10 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateRecordJPanel
      */
-    public CreateRecordJPanel() {
+    ArrayList<EmployeePojo> employeeDatabase;
+    public CreateRecordJPanel(ArrayList<EmployeePojo> employeeProfiles) {
         initComponents();
+        this.employeeDatabase = employeeProfiles;
     }
 
     /**
@@ -95,6 +101,11 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
 
         btnCreateProfile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCreateProfile.setText("CREATE");
+        btnCreateProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateProfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -196,6 +207,24 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
                 .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateProfileActionPerformed
+        // TODO add your handling code here:
+        EmployeePojo employeeProfile = new EmployeePojo();
+        employeeProfile.setName(txtName.getText());
+        employeeProfile.setEmployeeId(Integer.parseInt(txtEmployeeId.getText()));
+        employeeProfile.setAge(Integer.parseInt(txtAge.getText()));
+        employeeProfile.setGender(txtGender.getText());
+        employeeProfile.setLevel(txtLevel.getText());
+        employeeProfile.setTeamInformation(txtTeamInformation.getText());
+        employeeProfile.setPositionTitle(txtTitle.getText());
+        employeeProfile.setEmailAddress(txtEmailId.getText());
+        employeeProfile.setPhoneNumber(txtPhoneNumber.getText());
+        employeeProfile.setStartDate(txtStartDate.getText());
+        
+        employeeDatabase.add(employeeProfile);
+        JOptionPane.showMessageDialog(this, "New Employee Profile Created successfully");
+    }//GEN-LAST:event_btnCreateProfileActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

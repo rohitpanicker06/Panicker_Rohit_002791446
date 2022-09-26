@@ -4,6 +4,10 @@
  */
 package ui;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import model.EmployeePojo;
+
 /**
  *
  * @author Rahul
@@ -13,8 +17,11 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    
+    ArrayList<EmployeePojo> employeeDatabase;
     public MainJFrame() {
         initComponents();
+        employeeDatabase = new ArrayList<>();
     }
 
     /**
@@ -45,6 +52,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         viewEmployeeRecords.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         viewEmployeeRecords.setText("View Records");
+        viewEmployeeRecords.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewEmployeeRecordsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -109,9 +121,16 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void createEmployeeRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEmployeeRecordActionPerformed
         // TODO add your handling code here:
-        CreateRecordJPanel createRecordJPanel = new CreateRecordJPanel();
+        
+        CreateRecordJPanel createRecordJPanel = new CreateRecordJPanel(employeeDatabase);
         splitPane.setRightComponent(createRecordJPanel);
+        
     }//GEN-LAST:event_createEmployeeRecordActionPerformed
+
+    private void viewEmployeeRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeRecordsActionPerformed
+        // TODO add your handling code here:
+        System.out.println(employeeDatabase.size());
+    }//GEN-LAST:event_viewEmployeeRecordsActionPerformed
 
     /**
      * @param args the command line arguments
