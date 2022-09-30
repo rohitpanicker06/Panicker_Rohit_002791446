@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/AED%20assignments/Swing-Application-for-Human-Resource-Management-Assignment-1-/SwingApplication/src/ui/MainJFrame.java</file>
+            <file>file:/D:/AED%20assignments/Swing-Application-for-Human-Resource-Management-Assignment-1-/SwingApplication/src/ui/ViewRecordsJPanel.java</file>
+            <file>file:/D:/AED%20assignments/Swing-Application-for-Human-Resource-Management-Assignment-1-/SwingApplication/src/model/EmployeePojo.java</file>
+            <file>file:/D:/AED%20assignments/Swing-Application-for-Human-Resource-Management-Assignment-1-/SwingApplication/src/ui/CreateRecordJPanel.java</file>
+        </group>
     </open-files>
 </project-private>
