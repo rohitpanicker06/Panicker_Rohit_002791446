@@ -4,6 +4,7 @@
  */
 package ui;
 
+import Utility.ValidationHelper;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
@@ -250,23 +251,109 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
     private void btnCreateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateProfileActionPerformed
         // TODO add your handling code here:
         EmployeePojo employeeProfile = new EmployeePojo();
+        int errorCount = 0;
+        StringBuffer errorNotifier = new StringBuffer("Please correct the following Errors\n");
+        
+        if(true){
         employeeProfile.setName(txtName.getText());
+        }
+        else{
+            errorCount++;
+            errorNotifier.append(errorCount).append(". Name should start with a Character\n");
+            
+        }
+        
+        if(ValidationHelper.isInteger(txtEmployeeId.getText())){
         employeeProfile.setEmployeeId(Integer.parseInt(txtEmployeeId.getText()));
+        }
+        else{
+            errorCount++;
+            errorNotifier.append(errorCount).append(". EMP ID shoule be an Integer\n");
+            
+        }
+        
+        if(ValidationHelper.isInteger(txtAge.getText()))
+        {
         employeeProfile.setAge(Integer.parseInt(txtAge.getText()));
+        }
+        else{
+            errorCount++;
+            errorNotifier.append(errorCount).append(". Age should be an Integer\n");
+            
+        }
+        
+        if(!ValidationHelper.isInteger(txtGender.getText())){
         employeeProfile.setGender(txtGender.getText());
+        }else{
+            errorCount++;
+            errorNotifier.append(errorCount).append(". Gender Should be a String\n");
+            
+        }
+        
+        if(!ValidationHelper.isInteger(txtLevel.getText())){
         employeeProfile.setLevel(txtLevel.getText());
+        }
+        else{
+            errorCount++;
+             errorNotifier.append(errorCount).append(". Level Should be a String\n");
+            
+        }
+        
+        if(!ValidationHelper.isInteger(txtTeamInformation.getText())){
         employeeProfile.setTeamInformation(txtTeamInformation.getText());
+        }else{
+            errorCount++;
+             errorNotifier.append(errorCount).append(". Team-Info Should be a String\n");
+            
+        }
+        
+        if(!ValidationHelper.isInteger(txtTitle.getText())){
         employeeProfile.setPositionTitle(txtTitle.getText());
+        }else{
+            errorCount++;
+             errorNotifier.append(errorCount).append(". Position Title Should be a String\n");
+            
+        }
+        
+        if(ValidationHelper.isValidEmailID(txtEmailId.getText())){
         employeeProfile.setEmailAddress(txtEmailId.getText());
+        }
+        else{
+            errorCount++;
+             errorNotifier.append(errorCount).append(". Email-id is malformed [eg. abcd@gmail.com] \n");
+            
+        }
+        
+        if(ValidationHelper.checkPhoneNumberWith10Digits(txtPhoneNumber.getText()))
+        {
         employeeProfile.setPhoneNumber(txtPhoneNumber.getText());
+        }else{
+            errorCount++;
+             errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
+            
+        }
+        
         employeeProfile.setStartDate(txtStartDate.getText());
         
+        employeeProfile.setImage(globalImage);
         employeeDatabase.add(employeeProfile);
+        globalImage = null;
+        
+        if(errorCount >0)
+        {
+         JOptionPane.showMessageDialog(this, errorNotifier.toString());
+         System.out.println(errorNotifier);
+        }else{
         JOptionPane.showMessageDialog(this, "New Employee Profile Created successfully");
+        }  
     }//GEN-LAST:event_btnCreateProfileActionPerformed
-        String selectedImage ;
+       
+    
+    Image globalImage = null;
+    String selectedImage ;
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
+        globalImage = null;
         JFileChooser jFileChooser = new JFileChooser();
         FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Choose your extension","jpg");
         jFileChooser.setFileFilter(fileNameExtensionFilter);
@@ -283,7 +370,7 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
             ImageIcon imageIcon = new ImageIcon(selectedImage);
             Image imageDefault = imageIcon.getImage();
             Image imageDisplay = imageDefault.getScaledInstance(lblPhoto.getWidth(), lblPhoto.getHeight(), Image.SCALE_SMOOTH);
-            
+            globalImage = imageDisplay;
             
             lblPhoto.setIcon(new ImageIcon(imageDisplay));
             

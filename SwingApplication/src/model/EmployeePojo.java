@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.awt.Image;
 import java.util.Date;
 
 /**
@@ -22,6 +23,15 @@ public class EmployeePojo {
     private String positionTitle;
     private String phoneNumber;
     private String emailAddress;
+    private Image image;
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;
