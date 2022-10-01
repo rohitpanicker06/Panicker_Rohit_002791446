@@ -43,6 +43,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txtFieldSearch" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="btnViewSelectedRecord" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -57,8 +58,14 @@
                                           </Group>
                                           <Component id="txtAdditionalAge" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
                                           <Component id="txtAdditionalTitle" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
-                                          <Component id="txtAdditionalTeamInfo" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
-                                          <Component id="txtAdditionalGender" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="radioBtnMale" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                                  <Component id="radioBtnFemale" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="txtAdditionalTeamInfo" min="-2" pref="141" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -94,7 +101,6 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="txtFieldSearch" alignment="0" min="-2" pref="410" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -167,12 +173,13 @@
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtAdditionalTeamInfo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAdditionalGender" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="radioBtnMale" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="radioBtnFemale" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -329,8 +336,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAdditionalTeamInfo">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAdditionalGender">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtAdditionalStartDate">
     </Component>
     <Component class="javax.swing.JTextField" name="txtAdditionalLevel">
@@ -369,6 +374,19 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldSearchActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFieldSearchKeyPressed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioBtnMale">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Male"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioBtnMaleActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioBtnFemale">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Female"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

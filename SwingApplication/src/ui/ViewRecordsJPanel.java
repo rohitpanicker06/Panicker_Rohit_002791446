@@ -90,7 +90,6 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         txtAdditionalAge = new javax.swing.JTextField();
         txtAdditionalTitle = new javax.swing.JTextField();
         txtAdditionalTeamInfo = new javax.swing.JTextField();
-        txtAdditionalGender = new javax.swing.JTextField();
         txtAdditionalStartDate = new javax.swing.JTextField();
         txtAdditionalLevel = new javax.swing.JTextField();
         txtAdditionalEmailId = new javax.swing.JTextField();
@@ -98,6 +97,8 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         lblPhoto = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         txtFieldSearch = new javax.swing.JTextField();
+        radioBtnMale = new javax.swing.JRadioButton();
+        radioBtnFemale = new javax.swing.JRadioButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -188,6 +189,15 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
             }
         });
 
+        radioBtnMale.setText("Male");
+        radioBtnMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioBtnMaleActionPerformed(evt);
+            }
+        });
+
+        radioBtnFemale.setText("Female");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,6 +225,7 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtFieldSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnViewSelectedRecord)
@@ -227,8 +238,12 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
                                                 .addComponent(txtAdditionalId, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtAdditionalAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtAdditionalTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtAdditionalTeamInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtAdditionalGender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(radioBtnMale)
+                                                    .addGap(25, 25, 25)
+                                                    .addComponent(radioBtnFemale))
+                                                .addComponent(txtAdditionalTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(24, 24, 24)
@@ -252,8 +267,7 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
                                                         .addGap(39, 39, 39)
                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                             .addComponent(txtAdditionalStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(txtAdditionalLevel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                                    .addComponent(txtFieldSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                            .addComponent(txtAdditionalLevel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))))))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -307,11 +321,12 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtAdditionalTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtAdditionalGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                    .addComponent(radioBtnMale)
+                    .addComponent(radioBtnFemale))
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -350,11 +365,18 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnViewSelectedRecordActionPerformed
 
     private void populateAdditionalDetails(EmployeePojo employeeRecord)
-    {
+    {   
+        radioBtnMale.setSelected(false);
+        radioBtnFemale.setSelected(false);
         txtAdditionalName.setText(employeeRecord.getName());
         txtAdditionalAge.setText(String.valueOf(employeeRecord.getAge()));
         txtAdditionalEmailId.setText(employeeRecord.getEmailAddress());
-        txtAdditionalGender.setText(employeeRecord.getGender());
+        if(employeeRecord.getGender().equalsIgnoreCase("Male"))
+        {
+            radioBtnMale.setSelected(true);
+        }else{
+            radioBtnFemale.setSelected(true);
+        }
         txtAdditionalLevel.setText(employeeRecord.getLevel());
         txtAdditionalPhoneNumber.setText(employeeRecord.getPhoneNumber());
         txtAdditionalTitle.setText(employeeRecord.getPositionTitle());
@@ -423,11 +445,12 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
             errorCount++;
         }
         
-        if(!ValidationHelper.isInteger(txtAdditionalGender.getText())){
-        employeeProfile.setGender(txtAdditionalGender.getText());
+        if(radioBtnMale.isSelected() || radioBtnFemale.isSelected()){
+            employeeProfile.setGender(radioBtnMale.isSelected() ? "Male" : "Female");
         }else{
-            errorNotifier.append(errorCount).append(". Gender Should be a String\n");
             errorCount++;
+            errorNotifier.append(errorCount).append(". Select Gender\n");
+            
         }
         
         if(!ValidationHelper.isInteger(txtAdditionalLevel.getText())){
@@ -495,6 +518,10 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFieldSearchActionPerformed
 
+    private void radioBtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtnMaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioBtnMaleActionPerformed
+
   private void deleteRecord(EmployeePojo employeeRecord)
   {
     employeeDatabase.remove(employeeRecord);
@@ -520,10 +547,11 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPhoto;
+    private javax.swing.JRadioButton radioBtnFemale;
+    private javax.swing.JRadioButton radioBtnMale;
     private javax.swing.JTable tblRecords;
     private javax.swing.JTextField txtAdditionalAge;
     private javax.swing.JTextField txtAdditionalEmailId;
-    private javax.swing.JTextField txtAdditionalGender;
     private javax.swing.JTextField txtAdditionalId;
     private javax.swing.JTextField txtAdditionalLevel;
     private javax.swing.JTextField txtAdditionalName;
