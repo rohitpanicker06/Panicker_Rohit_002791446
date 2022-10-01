@@ -25,7 +25,7 @@ import javax.swing.text.Document;
 
 /**
  *
- * @author Rahul
+ * @author rohitPanicker
  */
 public class ViewRecordsJPanel extends javax.swing.JPanel {
 

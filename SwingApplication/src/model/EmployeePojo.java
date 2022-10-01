@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author Rahul
+ * @author rohitPanicker
  */
 public class EmployeePojo {
     

@@ -16,7 +16,7 @@ import model.EmployeePojo;
 
 /**
  *
- * @author Rahul
+ * @author rohitPanicker
  */
 public class CreateRecordJPanel extends javax.swing.JPanel {
 
