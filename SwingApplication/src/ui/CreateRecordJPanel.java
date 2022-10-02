@@ -356,12 +356,29 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
          JOptionPane.showMessageDialog(this, errorNotifier.toString());
          System.out.println(errorNotifier);
         }else{
+            if(!checkDuplicates(employeeProfile.getEmployeeId())){
         employeeDatabase.add(employeeProfile);
         JOptionPane.showMessageDialog(this, "New Employee Profile Created successfully");
         clearAllFields();
+         }
+            else{
+                JOptionPane.showMessageDialog(this, "An employee with Similar ID exists already, please try again");
+            }
         }  
     }//GEN-LAST:event_btnCreateProfileActionPerformed
+     
+    private boolean checkDuplicates(long empId)
+    {   
        
+        
+        for (EmployeePojo employeeRecord : employeeDatabase){
+            if(employeeRecord.getEmployeeId() == empId)
+            {
+                return true;
+            }    
+        }
+        return false;
+    }
     private void clearAllFields()
     {
         txtAge.setText("");
