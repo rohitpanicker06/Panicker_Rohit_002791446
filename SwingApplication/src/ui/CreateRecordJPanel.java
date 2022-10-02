@@ -4,10 +4,13 @@
  */
 package ui;
 
+import Utility.DateParser;
 import Utility.ValidationHelper;
 import java.awt.Image;
 import java.io.File;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -331,25 +334,50 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
              errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
             
         }
+        try{
+        Date date = DateParser.getDateFromString(txtStartDate.getText());
+        employeeProfile.setStartDate(date);
+        }catch (ParseException exception)
+        {
+            errorCount++;
+            errorNotifier.append(errorCount).append(" Please enter date in MM/dd/yyyy format\n");
+        }
         
-        employeeProfile.setStartDate(txtStartDate.getText());
-        
+        if(null != globalImage){
         employeeProfile.setImage(globalImage);
-        employeeDatabase.add(employeeProfile);
-        globalImage = null;
+        }else{
+            errorCount++;
+            errorNotifier.append(errorCount+". Please upload image before proceeding");
+        }
+        
         
         if(errorCount >0)
         {
          JOptionPane.showMessageDialog(this, errorNotifier.toString());
          System.out.println(errorNotifier);
         }else{
+        employeeDatabase.add(employeeProfile);
         JOptionPane.showMessageDialog(this, "New Employee Profile Created successfully");
+        clearAllFields();
         }  
     }//GEN-LAST:event_btnCreateProfileActionPerformed
        
-    
-    Image globalImage = null;
-    String selectedImage ;
+    private void clearAllFields()
+    {
+        txtAge.setText("");
+        txtEmailId.setText("");
+        txtEmployeeId.setText("");
+        txtLevel.setText("");
+        txtName.setText("");
+        txtPhoneNumber.setText("");
+        txtStartDate.setText("");
+        txtTeamInformation.setText("");
+        txtTitle.setText("");
+        lblPhoto.setIcon(null);
+        radioBtnMale.setSelected(false);
+        radioBtnMale.setSelected(false);
+        
+    }
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
         globalImage = null;
@@ -406,4 +434,6 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTeamInformation;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
+private Image globalImage = null;
+private String selectedImage ;
 }

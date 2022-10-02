@@ -17,7 +17,7 @@ public class EmployeePojo {
     private long employeeId;
     private Integer age;
     private String gender;
-    private String startDate;
+    private Date startDate;
     private String level;
     private String teamInformation;
     private String positionTitle;
@@ -65,11 +65,11 @@ public class EmployeePojo {
         this.gender = gender;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 

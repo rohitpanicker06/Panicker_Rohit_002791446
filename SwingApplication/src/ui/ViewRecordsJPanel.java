@@ -381,7 +381,7 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         txtAdditionalPhoneNumber.setText(employeeRecord.getPhoneNumber());
         txtAdditionalTitle.setText(employeeRecord.getPositionTitle());
         txtAdditionalTeamInfo.setText(employeeRecord.getTeamInformation());
-        txtAdditionalStartDate.setText(employeeRecord.getStartDate());
+        txtAdditionalStartDate.setText(employeeRecord.getStartDate().toString());
         txtAdditionalId.setText(String.valueOf(employeeRecord.getEmployeeId()));
     }
     private void txtAdditionalEmailIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdditionalEmailIdActionPerformed
@@ -401,20 +401,36 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         
         if(selectedRowIndex == -1)
         {
-            JOptionPane.showMessageDialog(this, "No Row is selected to Delete, Please Try Again");
+            JOptionPane.showMessageDialog(this, "No Row is selected to Update, Please Try Again");
             return;
         }
          
          DefaultTableModel tableModel = (DefaultTableModel) tblRecords.getModel();
         EmployeePojo employeeRecord = (EmployeePojo)tableModel.getValueAt(selectedRowIndex,  0);
-        if(checkAllValidation(employeeRecord));
+        boolean result = checkAllValidation(employeeRecord);
+        if(result)
         {
         employeeRecord = generateUpdatedRecord(employeeRecord);
         JOptionPane.showMessageDialog(this,"Record updated successfully");
         populateAndFillRecordsTable(); 
+        clearAllFields();
         }
   
     }//GEN-LAST:event_btnUpdateActionPerformed
+    private void clearAllFields()
+    {
+        txtAdditionalAge.setText("");
+        txtAdditionalEmailId.setText("");
+        txtAdditionalId.setText("");
+        txtAdditionalLevel.setText("");
+        txtAdditionalName.setText("");
+        txtAdditionalPhoneNumber.setText("");
+        txtAdditionalStartDate.setText("");
+        txtAdditionalTeamInfo.setText("");
+        txtAdditionalTitle.setText("");
+        lblPhoto.setIcon(null);
+        
+    }
     private boolean checkAllValidation(EmployeePojo employeeProfile)
     {
        int errorCount = 0;
@@ -424,16 +440,17 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         employeeProfile.setName(txtAdditionalName.getText());
         }
         else{
-            errorNotifier.append(errorCount).append(". Name should start with a Character\n");
-            errorCount++;
+           errorCount++;
+            errorNotifier.append(errorCount).append(". Name should start with a Character\n"); 
         }
         
         if(ValidationHelper.isInteger(txtAdditionalId.getText())){
         employeeProfile.setEmployeeId(Integer.parseInt(txtAdditionalId.getText()));
         }
         else{
-            errorNotifier.append(errorCount).append(". EMP ID shoule be an Integer\n");
             errorCount++;
+            errorNotifier.append(errorCount).append(". EMP ID shoule be an Integer\n");
+            
         }
         
         if(ValidationHelper.isInteger(txtAdditionalAge.getText()))
@@ -441,8 +458,9 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         employeeProfile.setAge(Integer.parseInt(txtAdditionalAge.getText()));
         }
         else{
-            errorNotifier.append(errorCount).append(". Age should be an Integer\n");
             errorCount++;
+            errorNotifier.append(errorCount).append(". Age should be an Integer\n");
+            
         }
         
         if(radioBtnMale.isSelected() || radioBtnFemale.isSelected()){
@@ -457,38 +475,43 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         employeeProfile.setLevel(txtAdditionalLevel.getText());
         }
         else{
-             errorNotifier.append(errorCount).append(". Level Should be a String\n");
             errorCount++;
+             errorNotifier.append(errorCount).append(". Level Should be a String\n");
+            
         }
         
         if(!ValidationHelper.isInteger(txtAdditionalTeamInfo.getText())){
         employeeProfile.setTeamInformation(txtAdditionalTeamInfo.getText());
         }else{
-             errorNotifier.append(errorCount).append(". Team-Info Should be a String\n");
             errorCount++;
+             errorNotifier.append(errorCount).append(". Team-Info Should be a String\n");
+            
         }
         
         if(!ValidationHelper.isInteger(txtAdditionalTitle.getText())){
         employeeProfile.setPositionTitle(txtAdditionalTitle.getText());
         }else{
-             errorNotifier.append(errorCount).append(". Position Title Should be a String\n");
             errorCount++;
+             errorNotifier.append(errorCount).append(". Position Title Should be a String\n");
+            
         }
         
         if(ValidationHelper.isValidEmailID(txtAdditionalEmailId.getText())){
         employeeProfile.setEmailAddress(txtAdditionalEmailId.getText());
         }
         else{
-             errorNotifier.append(errorCount).append(". Email-id is malformed [eg. abcd@gmail.com] \n");
             errorCount++;
+             errorNotifier.append(errorCount).append(". Email-id is malformed [eg. abcd@gmail.com] \n");
+            
         }
         
         if(ValidationHelper.checkPhoneNumberWith10Digits(txtAdditionalPhoneNumber.getText()))
         {
         employeeProfile.setPhoneNumber(txtAdditionalPhoneNumber.getText());
         }else{
-             errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
             errorCount++;
+             errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
+            
         }
         
         if(errorCount > 0 )
@@ -498,8 +521,7 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         }
         else{
         return true;
-        
-    }
+        }
     }
     private void txtAdditionalIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdditionalIdActionPerformed
         // TODO add your handling code here:
