@@ -344,24 +344,23 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         DefaultTableModel tableModel = (DefaultTableModel) tblRecords.getModel();
         EmployeePojo employeeRecord = (EmployeePojo)tableModel.getValueAt(selectedRowIndex,  0);
         deleteRecord(employeeRecord);
+        clearAllFields();
     }//GEN-LAST:event_btnDeleteSelectedRecordActionPerformed
 
     private void btnViewSelectedRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSelectedRecordActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblRecords.getSelectedRow();
-        
+        clearAllFields();
+        int selectedRowIndex = tblRecords.getSelectedRow(); 
         if(selectedRowIndex == -1)
         {
-            JOptionPane.showMessageDialog(this, "No Row is selected to Delete, Please Try Again");
+            JOptionPane.showMessageDialog(this, "No Row is selected to View, Please Try Again");
             return;
         }
          
-          DefaultTableModel tableModel = (DefaultTableModel) tblRecords.getModel();
-        EmployeePojo employeeRecord = (EmployeePojo)tableModel.getValueAt(selectedRowIndex,  0);
+        EmployeePojo employeeRecord = (EmployeePojo)tblRecords.getValueAt(selectedRowIndex,  0);
         lblPhoto.setIcon(new ImageIcon( employeeRecord.getImage()));
         populateAdditionalDetails(employeeRecord);
         
-          
     }//GEN-LAST:event_btnViewSelectedRecordActionPerformed
 
     private void populateAdditionalDetails(EmployeePojo employeeRecord)
@@ -429,6 +428,8 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         txtAdditionalTeamInfo.setText("");
         txtAdditionalTitle.setText("");
         lblPhoto.setIcon(null);
+        radioBtnFemale.setSelected(false);
+        radioBtnMale.setSelected(false);
         
     }
     private boolean checkAllValidation(EmployeePojo employeeProfile)

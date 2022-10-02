@@ -11,7 +11,7 @@ package Utility;
 public class RegexConstants {
     
     public static String NAME_REGEX = "\\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+";
-    public static String INTEGER_REGEX = "^[1-9][0-9]{0,2}(?:,[0-9]{3}){0,3}$";
+    public static String INTEGER_REGEX = "[0-9]+";
     public static String EMAIL_REGEX = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     public static String PHONE_NUMBER_VALIDATOR_10_DIGIT = "^[0-9]{10}$";
         
