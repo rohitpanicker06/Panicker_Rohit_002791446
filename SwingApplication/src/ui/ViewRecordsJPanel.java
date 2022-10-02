@@ -39,13 +39,12 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         populateAndFillRecordsTable();
     }
     
-    
-    
+   
     
     private void populateAndFillRecordsTable(){
         DefaultTableModel tableModel = (DefaultTableModel) tblRecords.getModel();
         tableModel.setRowCount(0);
-        
+        try{
         for(EmployeePojo employeeRecord:employeeDatabase){
             
             Object[] row = new Object[5];
@@ -59,6 +58,11 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
             
             
         }
+        }catch(Exception e)
+        {
+            System.out.println("Exception occured while populating Table e= " + e.getMessage());
+        }
+        
     }
 
     /**
@@ -332,7 +336,7 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
 
     private void btnDeleteSelectedRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSelectedRecordActionPerformed
         // TODO add your handling code here:
-        
+        try{
         int selectedRowIndex = tblRecords.getSelectedRow();
         
         if(selectedRowIndex == -1)
@@ -345,6 +349,10 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         EmployeePojo employeeRecord = (EmployeePojo)tableModel.getValueAt(selectedRowIndex,  0);
         deleteRecord(employeeRecord);
         clearAllFields();
+        }catch(Exception e)
+        {
+            System.out.println("Exception occured while deleting ");
+        }
     }//GEN-LAST:event_btnDeleteSelectedRecordActionPerformed
 
     private void btnViewSelectedRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSelectedRecordActionPerformed

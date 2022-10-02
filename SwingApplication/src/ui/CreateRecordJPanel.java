@@ -252,6 +252,9 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
 
     private void btnCreateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateProfileActionPerformed
         // TODO add your handling code here:
+        
+        try
+        {
         EmployeePojo employeeProfile = new EmployeePojo();
         int errorCount = 0;
         StringBuffer errorNotifier = new StringBuffer("Please correct the following Errors\n");
@@ -357,20 +360,28 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
          System.out.println(errorNotifier);
         }else{
             if(!checkDuplicates(employeeProfile.getEmployeeId())){
+                try{
         employeeDatabase.add(employeeProfile);
+                }catch(Exception e)
+                {
+                    System.out.println("Exception occured while adding employee to Database Record = " + e.getMessage());
+                }
         JOptionPane.showMessageDialog(this, "New Employee Profile Created successfully");
         clearAllFields();
          }
             else{
                 JOptionPane.showMessageDialog(this, "An employee with Similar ID exists already, please try again");
             }
-        }  
+        } 
+        }catch(Exception e)
+        {
+            System.out.println("Exception occoured while creation" + e.getMessage());
+        }
     }//GEN-LAST:event_btnCreateProfileActionPerformed
      
     private boolean checkDuplicates(long empId)
     {   
        
-        
         for (EmployeePojo employeeRecord : employeeDatabase){
             if(employeeRecord.getEmployeeId() == empId)
             {
@@ -379,6 +390,7 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
         }
         return false;
     }
+    
     private void clearAllFields()
     {
         txtAge.setText("");
@@ -392,9 +404,9 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
         txtTitle.setText("");
         lblPhoto.setIcon(null);
         radioBtnMale.setSelected(false);
-        radioBtnMale.setSelected(false);
-        
+        radioBtnMale.setSelected(false);    
     }
+    
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
         globalImage = null;
@@ -402,9 +414,9 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
         FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Choose your extension","jpg");
         jFileChooser.setFileFilter(fileNameExtensionFilter);
         
-        int selectedOperation = jFileChooser.showOpenDialog(this);
-        
-        if(selectedOperation == JFileChooser.APPROVE_OPTION)
+        try{
+           int selectedOperation = jFileChooser.showOpenDialog(this);
+           if(selectedOperation == JFileChooser.APPROVE_OPTION)
         {
             File file = jFileChooser.getSelectedFile();
             selectedImage = file.getAbsolutePath();
@@ -415,11 +427,12 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
             Image imageDefault = imageIcon.getImage();
             Image imageDisplay = imageDefault.getScaledInstance(lblPhoto.getWidth(), lblPhoto.getHeight(), Image.SCALE_SMOOTH);
             globalImage = imageDisplay;
-            
             lblPhoto.setIcon(new ImageIcon(imageDisplay));
-            
-            
         }
+        }catch(Exception e)
+        {
+            System.out.println("Exception occured while choosing image e= " + e.getMessage());
+        }  
     }//GEN-LAST:event_btnBrowseActionPerformed
 
 

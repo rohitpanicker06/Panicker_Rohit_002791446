@@ -18,13 +18,11 @@ public class ValidationHelper {
     {
         return RegexCheckHelper.dynamicRegexCheckHelper(RegexConstants.NAME_REGEX, name);
     }
-     
      public static boolean isInteger(String integerString)
      {
          return RegexCheckHelper.dynamicRegexCheckHelper(RegexConstants.INTEGER_REGEX, integerString);
         
      }
-     
      public static boolean isValidEmailID(String emailId)
      {
          return RegexCheckHelper.dynamicRegexCheckHelper(RegexConstants.EMAIL_REGEX,  emailId);
