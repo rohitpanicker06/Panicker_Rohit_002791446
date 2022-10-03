@@ -347,7 +347,7 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
 
             if (errorCount > 0) {
                 JOptionPane.showMessageDialog(this, errorNotifier.toString());
-                System.out.println(errorNotifier);
+                
             } else {
                 if (!checkDuplicates(employeeProfile.getEmployeeId())) {
                     try {

@@ -12,7 +12,7 @@ import java.util.Date;
  * @author rohitPanicker
  */
 public class EmployeePojo {
-    
+
     private String name;
     private long employeeId;
     private Integer age;
@@ -112,10 +112,9 @@ public class EmployeePojo {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-    
+
     @Override
-    public String toString()
-    {
-      return String.valueOf(employeeId);  
+    public String toString() {
+        return String.valueOf(employeeId);
     }
 }

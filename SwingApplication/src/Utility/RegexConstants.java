@@ -9,10 +9,10 @@ package Utility;
  * @author rohitPanicker
  */
 public class RegexConstants {
-    
+
     public static String NAME_REGEX = "\\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+";
     public static String INTEGER_REGEX = "[0-9]+";
     public static String EMAIL_REGEX = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     public static String PHONE_NUMBER_VALIDATOR_10_DIGIT = "^[0-9]{10}$";
-        
+
 }
