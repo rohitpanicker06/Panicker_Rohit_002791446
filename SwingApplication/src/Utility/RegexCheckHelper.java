@@ -16,19 +16,17 @@ import java.util.regex.Pattern;
  * @author rohitPanicker
  */
 public class RegexCheckHelper {
-    
-    
-    public static boolean dynamicRegexCheckHelper(String regex, String variableString)
-    {
+
+    public static boolean dynamicRegexCheckHelper(String regex, String variableString) {
         Pattern p = Pattern.compile(regex);
         if (variableString == null) {
             return false;
         }
-  
+
         Matcher m = p.matcher(variableString);
- 
+
         return m.matches();
- 
+
     }
-    
+
 }

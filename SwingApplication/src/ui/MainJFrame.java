@@ -18,8 +18,8 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    
     ArrayList<EmployeePojo> employeeDatabase;
+
     public MainJFrame() {
         initComponents();
         employeeDatabase = new ArrayList<>();
@@ -122,10 +122,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void createEmployeeRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEmployeeRecordActionPerformed
         // TODO add your handling code here:
-        
+
         CreateRecordJPanel createRecordJPanel = new CreateRecordJPanel(employeeDatabase);
         splitPane.setRightComponent(createRecordJPanel);
-        
+
     }//GEN-LAST:event_createEmployeeRecordActionPerformed
 
     private void viewEmployeeRecordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeRecordsActionPerformed

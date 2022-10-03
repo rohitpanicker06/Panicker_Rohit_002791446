@@ -33,36 +33,33 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
      * Creates new form ViewRecordsJPanel
      */
     ArrayList<EmployeePojo> employeeDatabase;
+
     public ViewRecordsJPanel(ArrayList<EmployeePojo> employeeDatabase) {
         initComponents();
         this.employeeDatabase = employeeDatabase;
         populateAndFillRecordsTable();
     }
-    
-   
-    
-    private void populateAndFillRecordsTable(){
+
+    private void populateAndFillRecordsTable() {
         DefaultTableModel tableModel = (DefaultTableModel) tblRecords.getModel();
         tableModel.setRowCount(0);
-        try{
-        for(EmployeePojo employeeRecord:employeeDatabase){
-            
-            Object[] row = new Object[5];
-            row[0] = employeeRecord;
-            row[1] = employeeRecord.getName();
-            row[2] = employeeRecord.getGender();
-            row[3] = employeeRecord.getAge();
-            row[4] = employeeRecord.getPositionTitle();
-            
-            tableModel.addRow(row);
-            
-            
-        }
-        }catch(Exception e)
-        {
+        try {
+            for (EmployeePojo employeeRecord : employeeDatabase) {
+
+                Object[] row = new Object[5];
+                row[0] = employeeRecord;
+                row[1] = employeeRecord.getName();
+                row[2] = employeeRecord.getGender();
+                row[3] = employeeRecord.getAge();
+                row[4] = employeeRecord.getPositionTitle();
+
+                tableModel.addRow(row);
+
+            }
+        } catch (Exception e) {
             System.out.println("Exception occured while populating Table e= " + e.getMessage());
         }
-        
+
     }
 
     /**
@@ -355,21 +352,19 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
 
     private void btnDeleteSelectedRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSelectedRecordActionPerformed
         // TODO add your handling code here:
-        try{
-        int selectedRowIndex = tblRecords.getSelectedRow();
-        
-        if(selectedRowIndex == -1)
-        {
-            JOptionPane.showMessageDialog(this, "No Row is selected to Delete, Please Try Again");
-            return;
-        }
-        
-        DefaultTableModel tableModel = (DefaultTableModel) tblRecords.getModel();
-        EmployeePojo employeeRecord = (EmployeePojo)tableModel.getValueAt(selectedRowIndex,  0);
-        deleteRecord(employeeRecord);
-        clearAllFields();
-        }catch(Exception e)
-        {
+        try {
+            int selectedRowIndex = tblRecords.getSelectedRow();
+
+            if (selectedRowIndex == -1) {
+                JOptionPane.showMessageDialog(this, "No Row is selected to Delete, Please Try Again");
+                return;
+            }
+
+            DefaultTableModel tableModel = (DefaultTableModel) tblRecords.getModel();
+            EmployeePojo employeeRecord = (EmployeePojo) tableModel.getValueAt(selectedRowIndex, 0);
+            deleteRecord(employeeRecord);
+            clearAllFields();
+        } catch (Exception e) {
             System.out.println("Exception occured while deleting ");
         }
     }//GEN-LAST:event_btnDeleteSelectedRecordActionPerformed
@@ -377,30 +372,27 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
     private void btnViewSelectedRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSelectedRecordActionPerformed
         // TODO add your handling code here:
         clearAllFields();
-        int selectedRowIndex = tblRecords.getSelectedRow(); 
-        if(selectedRowIndex == -1)
-        {
+        int selectedRowIndex = tblRecords.getSelectedRow();
+        if (selectedRowIndex == -1) {
             JOptionPane.showMessageDialog(this, "No Row is selected to View, Please Try Again");
             return;
         }
-        
-        EmployeePojo employeeRecord = (EmployeePojo)tblRecords.getValueAt(selectedRowIndex,  0);
-        lblPhoto.setIcon(new ImageIcon( employeeRecord.getImage()));
+
+        EmployeePojo employeeRecord = (EmployeePojo) tblRecords.getValueAt(selectedRowIndex, 0);
+        lblPhoto.setIcon(new ImageIcon(employeeRecord.getImage()));
         populateAdditionalDetails(employeeRecord);
-        
+
     }//GEN-LAST:event_btnViewSelectedRecordActionPerformed
 
-    private void populateAdditionalDetails(EmployeePojo employeeRecord)
-    {   
+    private void populateAdditionalDetails(EmployeePojo employeeRecord) {
         radioBtnMale.setSelected(false);
         radioBtnFemale.setSelected(false);
         txtAdditionalName.setText(employeeRecord.getName());
         txtAdditionalAge.setText(String.valueOf(employeeRecord.getAge()));
         txtAdditionalEmailId.setText(employeeRecord.getEmailAddress());
-        if(employeeRecord.getGender().equalsIgnoreCase("Male"))
-        {
+        if (employeeRecord.getGender().equalsIgnoreCase("Male")) {
             radioBtnMale.setSelected(true);
-        }else{
+        } else {
             radioBtnFemale.setSelected(true);
         }
         txtAdditionalLevel.setText(employeeRecord.getLevel());
@@ -413,38 +405,33 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
     private void txtAdditionalEmailIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdditionalEmailIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdditionalEmailIdActionPerformed
-    private EmployeePojo generateUpdatedRecord(EmployeePojo employeeProfile)
-    {
-        
+    private EmployeePojo generateUpdatedRecord(EmployeePojo employeeProfile) {
+
         return employeeProfile;
     }
-    
-    
+
+
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        
+
         int selectedRowIndex = tblRecords.getSelectedRow();
-        
-        if(selectedRowIndex == -1)
-        {
+
+        if (selectedRowIndex == -1) {
             JOptionPane.showMessageDialog(this, "No Row is selected to Update, Please Try Again");
             return;
         }
-         
-         
-        EmployeePojo employeeRecord = (EmployeePojo)tblRecords.getValueAt(selectedRowIndex,  0);
+
+        EmployeePojo employeeRecord = (EmployeePojo) tblRecords.getValueAt(selectedRowIndex, 0);
         boolean result = checkAllValidation(employeeRecord);
-        if(result)
-        {
-        employeeRecord = generateUpdatedRecord(employeeRecord);
-        JOptionPane.showMessageDialog(this,"Record updated successfully");
-        populateAndFillRecordsTable(); 
-        clearAllFields();
+        if (result) {
+            employeeRecord = generateUpdatedRecord(employeeRecord);
+            JOptionPane.showMessageDialog(this, "Record updated successfully");
+            populateAndFillRecordsTable();
+            clearAllFields();
         }
-  
+
     }//GEN-LAST:event_btnUpdateActionPerformed
-    private void clearAllFields()
-    {
+    private void clearAllFields() {
         txtAdditionalAge.setText("");
         txtAdditionalEmailId.setText("");
         txtAdditionalId.setText("");
@@ -457,98 +444,89 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         lblPhoto.setIcon(null);
         radioBtnFemale.setSelected(false);
         radioBtnMale.setSelected(false);
-        
+
     }
-    private boolean checkAllValidation(EmployeePojo employeeProfile)
-    {
-       int errorCount = 0;
+
+    private boolean checkAllValidation(EmployeePojo employeeProfile) {
+        int errorCount = 0;
         StringBuffer errorNotifier = new StringBuffer("Please correct the following Errors\n");
-        
-        if(ValidationHelper.isValidName(txtAdditionalName.getText())){
-        employeeProfile.setName(txtAdditionalName.getText());
+
+        if (ValidationHelper.isValidName(txtAdditionalName.getText())) {
+            employeeProfile.setName(txtAdditionalName.getText());
+        } else {
+            errorCount++;
+            errorNotifier.append(errorCount).append(". Name should start with a Character\n");
         }
-        else{
-           errorCount++;
-            errorNotifier.append(errorCount).append(". Name should start with a Character\n"); 
-        }
-        
-        if(ValidationHelper.isInteger(txtAdditionalId.getText())){
-        employeeProfile.setEmployeeId(Integer.parseInt(txtAdditionalId.getText()));
-        }
-        else{
+
+        if (ValidationHelper.isInteger(txtAdditionalId.getText())) {
+            employeeProfile.setEmployeeId(Integer.parseInt(txtAdditionalId.getText()));
+        } else {
             errorCount++;
             errorNotifier.append(errorCount).append(". EMP ID shoule be an Integer\n");
-            
+
         }
-        
-        if(ValidationHelper.isInteger(txtAdditionalAge.getText()))
-        {
-        employeeProfile.setAge(Integer.parseInt(txtAdditionalAge.getText()));
-        }
-        else{
+
+        if (ValidationHelper.isInteger(txtAdditionalAge.getText())) {
+            employeeProfile.setAge(Integer.parseInt(txtAdditionalAge.getText()));
+        } else {
             errorCount++;
             errorNotifier.append(errorCount).append(". Age should be an Integer\n");
-            
+
         }
-        
-        if(radioBtnMale.isSelected() || radioBtnFemale.isSelected()){
+
+        if (radioBtnMale.isSelected() || radioBtnFemale.isSelected()) {
             employeeProfile.setGender(radioBtnMale.isSelected() ? "Male" : "Female");
-        }else{
+        } else {
             errorCount++;
             errorNotifier.append(errorCount).append(". Select Gender\n");
-            
+
         }
-        
-        if(!ValidationHelper.isInteger(txtAdditionalLevel.getText())){
-        employeeProfile.setLevel(txtAdditionalLevel.getText());
-        }
-        else{
+
+        if (!ValidationHelper.isInteger(txtAdditionalLevel.getText())) {
+            employeeProfile.setLevel(txtAdditionalLevel.getText());
+        } else {
             errorCount++;
-             errorNotifier.append(errorCount).append(". Level Should be a String\n");
-            
+            errorNotifier.append(errorCount).append(". Level Should be a String\n");
+
         }
-        
-        if(!ValidationHelper.isInteger(txtAdditionalTeamInfo.getText())){
-        employeeProfile.setTeamInformation(txtAdditionalTeamInfo.getText());
-        }else{
+
+        if (!ValidationHelper.isInteger(txtAdditionalTeamInfo.getText())) {
+            employeeProfile.setTeamInformation(txtAdditionalTeamInfo.getText());
+        } else {
             errorCount++;
-             errorNotifier.append(errorCount).append(". Team-Info Should be a String\n");
-            
+            errorNotifier.append(errorCount).append(". Team-Info Should be a String\n");
+
         }
-        
-        if(!ValidationHelper.isInteger(txtAdditionalTitle.getText())){
-        employeeProfile.setPositionTitle(txtAdditionalTitle.getText());
-        }else{
+
+        if (!ValidationHelper.isInteger(txtAdditionalTitle.getText())) {
+            employeeProfile.setPositionTitle(txtAdditionalTitle.getText());
+        } else {
             errorCount++;
-             errorNotifier.append(errorCount).append(". Position Title Should be a String\n");
-            
+            errorNotifier.append(errorCount).append(". Position Title Should be a String\n");
+
         }
-        
-        if(ValidationHelper.isValidEmailID(txtAdditionalEmailId.getText())){
-        employeeProfile.setEmailAddress(txtAdditionalEmailId.getText());
-        }
-        else{
+
+        if (ValidationHelper.isValidEmailID(txtAdditionalEmailId.getText())) {
+            employeeProfile.setEmailAddress(txtAdditionalEmailId.getText());
+        } else {
             errorCount++;
-             errorNotifier.append(errorCount).append(". Email-id is malformed [eg. abcd@gmail.com] \n");
-            
+            errorNotifier.append(errorCount).append(". Email-id is malformed [eg. abcd@gmail.com] \n");
+
         }
-        
-        if(ValidationHelper.checkPhoneNumberWith10Digits(txtAdditionalPhoneNumber.getText()))
-        {
-        employeeProfile.setPhoneNumber(txtAdditionalPhoneNumber.getText());
-        }else{
+
+        if (ValidationHelper.checkPhoneNumberWith10Digits(txtAdditionalPhoneNumber.getText())) {
+            employeeProfile.setPhoneNumber(txtAdditionalPhoneNumber.getText());
+        } else {
             errorCount++;
-             errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
-            
+            errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
+
         }
-        
-        if(errorCount > 0 )
-        {
+
+        if (errorCount > 0) {
             JOptionPane.showMessageDialog(this, errorNotifier.toString());
             return false;
-        }
-        else{
-        return true;
+        } else {
+            return true;
         }
     }
     private void txtAdditionalIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdditionalIdActionPerformed
@@ -557,7 +535,7 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
 
     private void txtFieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldSearchKeyPressed
         // TODO add your handling code here:
-        DefaultTableModel defaultTableModel = (DefaultTableModel)tblRecords.getModel();
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblRecords.getModel();
         TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>(defaultTableModel);
         tblRecords.setRowSorter(tableRowSorter);
         tableRowSorter.setRowFilter(RowFilter.regexFilter(txtFieldSearch.getText().trim()));
@@ -571,14 +549,13 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_radioBtnMaleActionPerformed
 
-  private void deleteRecord(EmployeePojo employeeRecord)
-  {
-    employeeDatabase.remove(employeeRecord);
-    JOptionPane.showMessageDialog(this,"Record deleted successfully");
-    populateAndFillRecordsTable();
-  }
-    
-    
+    private void deleteRecord(EmployeePojo employeeRecord) {
+        employeeDatabase.remove(employeeRecord);
+        JOptionPane.showMessageDialog(this, "Record deleted successfully");
+        populateAndFillRecordsTable();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteSelectedRecord;
     private javax.swing.JButton btnUpdate;

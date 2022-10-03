@@ -27,6 +27,7 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
      * Creates new form CreateRecordJPanel
      */
     ArrayList<EmployeePojo> employeeDatabase;
+
     public CreateRecordJPanel(ArrayList<EmployeePojo> employeeProfiles) {
         initComponents();
         this.employeeDatabase = employeeProfiles;
@@ -252,147 +253,130 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
 
     private void btnCreateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateProfileActionPerformed
         // TODO add your handling code here:
-        
-        try
-        {
-        EmployeePojo employeeProfile = new EmployeePojo();
-        int errorCount = 0;
-        StringBuffer errorNotifier = new StringBuffer("Please correct the following Errors\n");
-        
-        if(ValidationHelper.isValidName(txtName.getText())){
-        employeeProfile.setName(txtName.getText());
-        }
-        else{
-            errorCount++;
-            errorNotifier.append(errorCount).append(". Name should start with a Character\n");
-            
-        }
-        
-        if(ValidationHelper.isInteger(txtEmployeeId.getText())){
-        employeeProfile.setEmployeeId(Integer.parseInt(txtEmployeeId.getText()));
-        }
-        else{
-            errorCount++;
-            errorNotifier.append(errorCount).append(". EMP ID shoule be an Integer\n");
-            
-        }
-        
-        if(ValidationHelper.isInteger(txtAge.getText()))
-        {
-        employeeProfile.setAge(Integer.parseInt(txtAge.getText()));
-        }
-        else{
-            errorCount++;
-            errorNotifier.append(errorCount).append(". Age should be an Integer\n");
-            
-        }
-        
-        if(radioBtnMale.isSelected() || radioBtnFemale.isSelected()){
-            employeeProfile.setGender(radioBtnMale.isSelected() ? "Male" : "Female");
-        }else{
-            errorCount++;
-            errorNotifier.append(errorCount).append(". Select Gender\n");
-            
-        }
-        
-        if(!ValidationHelper.isInteger(txtLevel.getText())){
-        employeeProfile.setLevel(txtLevel.getText());
-        }
-        else{
-            errorCount++;
-             errorNotifier.append(errorCount).append(". Level Should be a String\n");
-            
-        }
-        
-        if(!ValidationHelper.isInteger(txtTeamInformation.getText())){
-        employeeProfile.setTeamInformation(txtTeamInformation.getText());
-        }else{
-            errorCount++;
-             errorNotifier.append(errorCount).append(". Team-Info Should be a String\n");
-            
-        }
-        
-        if(!ValidationHelper.isInteger(txtTitle.getText())){
-        employeeProfile.setPositionTitle(txtTitle.getText());
-        }else{
-            errorCount++;
-             errorNotifier.append(errorCount).append(". Position Title Should be a String\n");
-            
-        }
-        
-        if(ValidationHelper.isValidEmailID(txtEmailId.getText())){
-        employeeProfile.setEmailAddress(txtEmailId.getText());
-        }
-        else{
-            errorCount++;
-             errorNotifier.append(errorCount).append(". Email-id is malformed [eg. abcd@gmail.com] \n");
-            
-        }
-        
-        if(ValidationHelper.checkPhoneNumberWith10Digits(txtPhoneNumber.getText()))
-        {
-        employeeProfile.setPhoneNumber(txtPhoneNumber.getText());
-        }else{
-            errorCount++;
-             errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
-            
-        }
-        try{
-        Date date = DateParser.getDateFromString(txtStartDate.getText());
-        employeeProfile.setStartDate(date);
-        }catch (ParseException exception)
-        {
-            errorCount++;
-            errorNotifier.append(errorCount).append(" Please enter date in MM/dd/yyyy format\n");
-        }
-        
-        if(null != globalImage){
-        employeeProfile.setImage(globalImage);
-        }else{
-            errorCount++;
-            errorNotifier.append(errorCount+". Please upload image before proceeding");
-        }
-        
-        
-        if(errorCount >0)
-        {
-         JOptionPane.showMessageDialog(this, errorNotifier.toString());
-         System.out.println(errorNotifier);
-        }else{
-            if(!checkDuplicates(employeeProfile.getEmployeeId())){
-                try{
-        employeeDatabase.add(employeeProfile);
-                }catch(Exception e)
-                {
-                    System.out.println("Exception occured while adding employee to Database Record = " + e.getMessage());
-                }
-        JOptionPane.showMessageDialog(this, "New Employee Profile Created successfully");
-        clearAllFields();
-         }
-            else{
-                JOptionPane.showMessageDialog(this, "An employee with Similar ID exists already, please try again");
+
+        try {
+            EmployeePojo employeeProfile = new EmployeePojo();
+            int errorCount = 0;
+            StringBuffer errorNotifier = new StringBuffer("Please correct the following Errors\n");
+
+            if (ValidationHelper.isValidName(txtName.getText())) {
+                employeeProfile.setName(txtName.getText());
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Name should start with a Character\n");
+
             }
-        } 
-        }catch(Exception e)
-        {
+
+            if (ValidationHelper.isInteger(txtEmployeeId.getText())) {
+                employeeProfile.setEmployeeId(Integer.parseInt(txtEmployeeId.getText()));
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". EMP ID shoule be an Integer\n");
+
+            }
+
+            if (ValidationHelper.isInteger(txtAge.getText())) {
+                employeeProfile.setAge(Integer.parseInt(txtAge.getText()));
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Age should be an Integer\n");
+
+            }
+
+            if (radioBtnMale.isSelected() || radioBtnFemale.isSelected()) {
+                employeeProfile.setGender(radioBtnMale.isSelected() ? "Male" : "Female");
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Select Gender\n");
+
+            }
+
+            if (!ValidationHelper.isInteger(txtLevel.getText())) {
+                employeeProfile.setLevel(txtLevel.getText());
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Level Should be a String\n");
+
+            }
+
+            if (!ValidationHelper.isInteger(txtTeamInformation.getText())) {
+                employeeProfile.setTeamInformation(txtTeamInformation.getText());
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Team-Info Should be a String\n");
+
+            }
+
+            if (!ValidationHelper.isInteger(txtTitle.getText())) {
+                employeeProfile.setPositionTitle(txtTitle.getText());
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Position Title Should be a String\n");
+
+            }
+
+            if (ValidationHelper.isValidEmailID(txtEmailId.getText())) {
+                employeeProfile.setEmailAddress(txtEmailId.getText());
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Email-id is malformed [eg. abcd@gmail.com] \n");
+
+            }
+
+            if (ValidationHelper.checkPhoneNumberWith10Digits(txtPhoneNumber.getText())) {
+                employeeProfile.setPhoneNumber(txtPhoneNumber.getText());
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
+
+            }
+            try {
+                Date date = DateParser.getDateFromString(txtStartDate.getText());
+                employeeProfile.setStartDate(date);
+            } catch (ParseException exception) {
+                errorCount++;
+                errorNotifier.append(errorCount).append(" Please enter date in MM/dd/yyyy format\n");
+            }
+
+            if (null != globalImage) {
+                employeeProfile.setImage(globalImage);
+            } else {
+                errorCount++;
+                errorNotifier.append(errorCount + ". Please upload image before proceeding");
+            }
+
+            if (errorCount > 0) {
+                JOptionPane.showMessageDialog(this, errorNotifier.toString());
+                System.out.println(errorNotifier);
+            } else {
+                if (!checkDuplicates(employeeProfile.getEmployeeId())) {
+                    try {
+                        employeeDatabase.add(employeeProfile);
+                    } catch (Exception e) {
+                        System.out.println("Exception occured while adding employee to Database Record = " + e.getMessage());
+                    }
+                    JOptionPane.showMessageDialog(this, "New Employee Profile Created successfully");
+                    clearAllFields();
+                } else {
+                    JOptionPane.showMessageDialog(this, "An employee with Similar ID exists already, please try again");
+                }
+            }
+        } catch (Exception e) {
             System.out.println("Exception occoured while creation" + e.getMessage());
         }
     }//GEN-LAST:event_btnCreateProfileActionPerformed
-     
-    private boolean checkDuplicates(long empId)
-    {   
-       
-        for (EmployeePojo employeeRecord : employeeDatabase){
-            if(employeeRecord.getEmployeeId() == empId)
-            {
+
+    private boolean checkDuplicates(long empId) {
+
+        for (EmployeePojo employeeRecord : employeeDatabase) {
+            if (employeeRecord.getEmployeeId() == empId) {
                 return true;
-            }    
+            }
         }
         return false;
     }
-    
-    private void clearAllFields()
-    {
+
+    private void clearAllFields() {
         txtAge.setText("");
         txtEmailId.setText("");
         txtEmployeeId.setText("");
@@ -404,35 +388,33 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
         txtTitle.setText("");
         lblPhoto.setIcon(null);
         radioBtnMale.setSelected(false);
-        radioBtnMale.setSelected(false);    
+        radioBtnMale.setSelected(false);
     }
-    
+
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
         globalImage = null;
         JFileChooser jFileChooser = new JFileChooser();
-        FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Choose your extension","jpg");
+        FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("Choose your extension", "jpg");
         jFileChooser.setFileFilter(fileNameExtensionFilter);
-        
-        try{
-           int selectedOperation = jFileChooser.showOpenDialog(this);
-           if(selectedOperation == JFileChooser.APPROVE_OPTION)
-        {
-            File file = jFileChooser.getSelectedFile();
-            selectedImage = file.getAbsolutePath();
-            
-            JOptionPane.showInternalMessageDialog(null, "Are you sure you want this Photo?");
-            
-            ImageIcon imageIcon = new ImageIcon(selectedImage);
-            Image imageDefault = imageIcon.getImage();
-            Image imageDisplay = imageDefault.getScaledInstance(lblPhoto.getWidth(), lblPhoto.getHeight(), Image.SCALE_SMOOTH);
-            globalImage = imageDisplay;
-            lblPhoto.setIcon(new ImageIcon(imageDisplay));
-        }
-        }catch(Exception e)
-        {
+
+        try {
+            int selectedOperation = jFileChooser.showOpenDialog(this);
+            if (selectedOperation == JFileChooser.APPROVE_OPTION) {
+                File file = jFileChooser.getSelectedFile();
+                selectedImage = file.getAbsolutePath();
+
+                JOptionPane.showInternalMessageDialog(null, "Are you sure you want this Photo?");
+
+                ImageIcon imageIcon = new ImageIcon(selectedImage);
+                Image imageDefault = imageIcon.getImage();
+                Image imageDisplay = imageDefault.getScaledInstance(lblPhoto.getWidth(), lblPhoto.getHeight(), Image.SCALE_SMOOTH);
+                globalImage = imageDisplay;
+                lblPhoto.setIcon(new ImageIcon(imageDisplay));
+            }
+        } catch (Exception e) {
             System.out.println("Exception occured while choosing image e= " + e.getMessage());
-        }  
+        }
     }//GEN-LAST:event_btnBrowseActionPerformed
 
 
@@ -464,6 +446,6 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTeamInformation;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
-private Image globalImage = null;
-private String selectedImage ;
+    private Image globalImage = null;
+    private String selectedImage;
 }

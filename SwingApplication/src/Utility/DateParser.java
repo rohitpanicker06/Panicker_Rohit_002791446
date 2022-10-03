@@ -15,14 +15,13 @@ import java.util.Locale;
  * @author rohitpanicker
  */
 public class DateParser {
-    
-    
-    public static Date getDateFromString(String date) throws ParseException{
-        
+
+    public static Date getDateFromString(String date) throws ParseException {
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         String dateInString = "12/02/2013";
         Date dateGenerated = simpleDateFormat.parse(date);
         return dateGenerated;
     }
-    
+
 }
