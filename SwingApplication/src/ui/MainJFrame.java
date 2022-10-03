@@ -43,6 +43,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        controlPanel.setBackground(new java.awt.Color(102, 102, 102));
+
         createEmployeeRecord.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         createEmployeeRecord.setText("Create Record");
         createEmployeeRecord.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +84,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane.setLeftComponent(controlPanel);
 
-        jLabel1.setBackground(new java.awt.Color(102, 102, 255));
+        welcomePanel.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel1.setBackground(new java.awt.Color(51, 255, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Welcome To Employee Management Center");

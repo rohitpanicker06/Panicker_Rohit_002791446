@@ -69,6 +69,9 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
         radioBtnMale = new javax.swing.JRadioButton();
         radioBtnFemale = new javax.swing.JRadioButton();
 
+        setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel1.setBackground(new java.awt.Color(204, 0, 102));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CREATE EMPLOYEE PROFILE");
@@ -120,6 +123,8 @@ public class CreateRecordJPanel extends javax.swing.JPanel {
                 btnCreateProfileActionPerformed(evt);
             }
         });
+
+        txtTeamInformation.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         lblPhoto.setBackground(new java.awt.Color(255, 255, 255));
         lblPhoto.setOpaque(true);
