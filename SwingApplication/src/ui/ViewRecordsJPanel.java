@@ -4,6 +4,7 @@
  */
 package ui;
 
+import Utility.DateParser;
 import Utility.ValidationHelper;
 import java.awt.CardLayout;
 import java.awt.Container;
@@ -19,6 +20,8 @@ import model.EmployeePojo;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.text.Document;
@@ -399,7 +402,16 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         txtAdditionalPhoneNumber.setText(employeeRecord.getPhoneNumber());
         txtAdditionalTitle.setText(employeeRecord.getPositionTitle());
         txtAdditionalTeamInfo.setText(employeeRecord.getTeamInformation());
-        txtAdditionalStartDate.setText(employeeRecord.getStartDate().toString());
+        try
+        {
+        String[] dateString = employeeRecord.getStartDate().toString().split(" ");
+        String date = (" " +  dateString[2] + " " + dateString[1] + " " + dateString[dateString.length -1] );
+        txtAdditionalStartDate.setText(date);
+        }catch(Exception e)
+        {
+            System.out.println("Exception faced while splitting and setting date " + e.getMessage());
+            txtAdditionalStartDate.setText(" ");
+        }
         txtAdditionalId.setText(String.valueOf(employeeRecord.getEmployeeId()));
     }
     private void txtAdditionalEmailIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdditionalEmailIdActionPerformed
@@ -521,6 +533,14 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
             errorNotifier.append(errorCount).append(". Phone Number should be Integer and should be of 10 digits\n");
 
         }
+        
+        try {
+                Date date = DateParser.getDateFromString(txtAdditionalStartDate.getText());
+                employeeProfile.setStartDate(date);
+            } catch (ParseException exception) {
+                errorCount++;
+                errorNotifier.append(errorCount).append(" Please enter date in MM/dd/yyyy format\n");
+            }
 
         if (errorCount > 0) {
             JOptionPane.showMessageDialog(this, errorNotifier.toString());
