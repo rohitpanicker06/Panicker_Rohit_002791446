@@ -31,24 +31,4 @@ public class RegexCheckHelper {
  
     }
     
-    
-    public static void main(String[] args) throws ParseException {
-        String name =  "Rohit";
-        System.out.println(RegexCheckHelper.dynamicRegexCheckHelper(RegexConstants.NAME_REGEX, name));
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        String dateInString = "12/02/2013";
-        Date date = simpleDateFormat.parse(dateInString);
-        System.out.println(date.getYear());
-        boolean result = true;
-        if(result)
-        {
-            System.out.println("false aya");
-        }
-        else
-        {
-            System.out.println("true aya");
-        }
-        
-    }
-    
 }
