@@ -102,7 +102,7 @@ public class ViewRecordsJPanel extends javax.swing.JPanel {
         radioBtnFemale = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 204, 204));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
