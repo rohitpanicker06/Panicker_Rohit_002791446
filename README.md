@@ -10,4 +10,6 @@ Swing Application for HR Management, done as a part of Assignment for "INFO 5100
 
 Validation:
 Contains Regex Validation for 10 Attributes of Employee Class.
+
+
 Supports jpg,png,gif formats for Image Drop in.
